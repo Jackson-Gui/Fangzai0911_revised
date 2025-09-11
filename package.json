@@ -1,11 +1,14 @@
 {
   "name": "fangzai0911_revised",
   "version": "1.0.0",
-  "description": "Static HTML website",
+  "description": "Static HTML website with form validation",
   "main": "aljx/index.html",
   "scripts": {
     "build": "echo 'No build step needed for static site'",
     "test": "echo 'No tests specified'"
+  },
+  "dependencies": {
+    "joi": "^17.9.2"
   },
   "engines": {
     "node": "18.x"
