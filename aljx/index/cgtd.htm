@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教学成果介绍-河北省教学成果奖（研究生）申报展示</title>
+<META Name="keywords" Content="河北省教学成果奖（研究生）申报展示" />
+
+<link rel="stylesheet" type="text/css" href="../../style/yjsjxcg.css">
+<link rel="stylesheet" href="../../style/swiper.min.css">
+<script src="../../js/jquery.min.js"></script>
+
+<style>
+    /* 保持原有样式不变 */
+    .list-content iframe {
+        width: 100%;
+        height: 800px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .content-placeholder {
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 5px;
+        text-align: center;
+        color: #666;
+        font-size: 16px;
+    }
+
+    .loading-indicator {
+        display: none;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .loading-indicator .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* 模态窗口样式 */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 1000px;
+        max-height: 80vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .modal-content.pdf {
+        width: 90%;
+        height: 90vh;
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* 图片和PDF缩略图样式 */
+    .thumbnail-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .thumbnail {
+        cursor: pointer;
+        transition: transform 0.3s;
+        width: 200px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .thumbnail:hover {
+        transform: scale(1.05);
+    }
+
+    .thumbnail img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .thumbnail.pdf {
+        padding: 20px;
+        background: #f5f5f5;
+        text-align: center;
+    }
+
+    .thumbnail .caption {
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        background: #fff;
+    }
+    
+    /* 图片展示页面样式 */
+    .image-gallery {
+        padding: 20px;
+    }
+    
+    .gallery-title {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+        font-size: 24px;
+    }
+    
+    /* 科研成果分项样式 */
+    .research-submenu {
+        display: none;
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    
+    .research-submenu a {
+        display: block;
+        padding: 8px 15px;
+        color: #555;
+        text-decoration: none;
+        font-size: 14px;
+        border-left: 3px solid transparent;
+    }
+    
+    .research-submenu a:hover {
+        background-color: #f5f5f5;
+        border-left-color: #3498db;
+    }
+    
+    .has-submenu::after {
+        content: "▼";
+        font-size: 10px;
+        margin-left: 5px;
+    }
+    
+    .has-submenu.active::after {
+        content: "▲";
+    }
+
+    /* 团队成员样式 */
+    .team-submenu {
+        display: none;
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    
+    .team-submenu a {
+        display: block;
+        padding: 8px 15px;
+        color: #555;
+        text-decoration: none;
+        font-size: 14px;
+        border-left: 3px solid transparent;
+    }
+    
+    .team-submenu a:hover {
+        background-color: #f5f5f5;
+        border-left-color: #3498db;
+    }
+
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #0074BD, #10559D);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.7);
+}
+
+.floating-btn img {
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.floating-btn .tooltip {
+    position: absolute;
+    bottom: 90px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.floating-btn:hover .tooltip {
+    opacity: 1;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top_line">
+    <div class="wid_main">
+        <h4>欢迎您访问防灾科技学院河北省教学成果奖（研究生）申报展示网站，推荐使用谷歌浏览器、微软Edge浏览器或者极速模式</h4>
+    </div>
+</div>
+
+<div class="cg_top_logo">
+    <div class="wid_main">
+        <div class="cg_logo">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td><img src="../images/logo0311.png" border="0"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="cg_top_nav">
+    <div class="wid_main">
+        <div class="cg_dh">
+            <ul>                              
+                <li><a href="../index.htm">首页</a></li>                                   
+                <li><a href="jxcgjs.htm">成果介绍</a></li>                                   
+                <li><a href="../cgzj/jxcgzjbg.htm">成果总结</a></li>                                   
+                <li><a href="../cgyy/jxcgyyjxgzmcl.htm">成果应用</a></li>                                   
+                <li><a href="../mtbd/jsldsrgbrw.htm">媒体报道</a></li>                                   
+            </ul>
+        </div>
+    </div>
+</div>
+
+   <!-- 灾害模拟实验室悬浮按钮 -->
+    <a href="https://roma.720yun.com/vr/5a197f5f3d76a5e6/" target="_blank">
+        <div class="floating-btn">
+            <img src="../images/FirstPageImages/Zaihaimonishiyanshi.jpg" alt="灾害模拟实验室">
+            <div class="tooltip">进入</div>
+        </div>
+    </a>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">       
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (0).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (2).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (3).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (4).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (5).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (6).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (7).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (8).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (9).jpg" alt=""></a></div>
+    </div>
+
+    <div class="swiper-pagination"></div>
+</div>
+
+<!-- 模态窗口 -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<div id="pdfModal" class="modal">
+    <span class="close">&times;</span>
+    <iframe class="modal-content pdf" id="modalPdf" frameborder="0"></iframe>
+</div>
+
+<!-- 主内容容器 -->
+<div class="list_main">
+    <div class="wid_main">
+        <!-- 左侧导航区域 -->
+        <div class="n_left">
+            <div class="ListColumnTitle"> 
+                <span>成果团队</span>           
+            </div>
+            <div class="subcontent">   
+                <!-- 新增团队成员导航 -->
+                    <a href="javascript:void(0);" class="member-link active" data-pdf="../pdfs/tdcy/szg.pdf" data-name="孙治国"><strong>成果主持人（孙治国）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/zlx.pdf" data-name="张令心"><strong>成果第2完成人（张令心）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/gx.pdf" data-name="郭迅"><strong>成果第3完成人（郭迅）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/wt.pdf" data-name="王涛"><strong>成果第4完成人（王涛）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/zy.pdf" data-name="周洋"><strong>成果第5完成人（周洋）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/lzx.pdf" data-name="刘子心"><strong>成果第6完成人（刘子心）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/wb.pdf" data-name="王波"><strong>成果第7完成人（王波）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/cxy.pdf" data-name="陈笑宇"><strong>成果第8完成人（陈笑宇）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/jjy.pdf" data-name="姜纪沂"><strong>成果第9完成人（姜纪沂）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/10/B9/69/49B73BAE3D27FCCE4FF361460A9_3D5D05A9_1F4B6.pdf" data-name="戴君武"><strong>成果第10完成人（戴君武）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/11/B9/69/49B73BAE3D27FCCE4FF361460A9_3D5D05A9_1F4B6.pdf" data-name="张倩"><strong>成果第11完成人（张倩）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/yjy.pdf" data-name="尹景玉"><strong>成果第12完成人（尹景玉）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/gcz.pdf" data-name="桂成中"><strong>成果第13完成人（桂成中）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/lyl.pdf" data-name="卢玉林"><strong>成果第14完成人（卢玉林）</strong></a>
+                    <a href="javascript:void(0);" class="member-link" data-pdf="../pdfs/tdcy/ljy.pdf" data-name="刘敬严"><strong>成果第15完成人（刘敬严）</strong></a>
+            </div>    
+        </div>
+        
+        <!-- 右侧内容区域 -->
+        <div class="n_right">
+            <div class="list-title">
+                <div class="position">当前位置:
+                    <a href="../../aljx.htm">首页</a>
+                    <a href="cgtd.htm">>>成果团队</a> 
+                    <a href="cgtd.htm">>>成果主持人（孙治国）</a> 
+                </div>
+            </div>   
+            
+            <div class="list-content" id="contentArea">
+                <div class="loading-indicator" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <p>内容加载中，请稍候...</p>
+                </div>
+                
+                <div id="currentContent">
+                    <div class="NewsContent">
+                        <div id="vsb_content_1223_u61">
+                            <div id="vsb_content">
+                                <p><iframe width="95%" height="800" src="刘军香-关于批准20182019学年度河北省优秀博士硕士学位论文的通知.pdf" style="border:1px solid #DDDDDD"></iframe></p>
+                                <p><br></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>  
+
+<div class="footer">
+    <div class="copyright">
+        <p>CopyRight © 防灾科技学院地震工程与建筑安全学院&nbsp;&nbsp;2025&nbsp;&nbsp;All Rights Reserved&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;版权所有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+</div>
+    
+<script src="../../js/swiper.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    // 初始化轮播图
+    var swiper = new Swiper('.swiper-container', {     
+        autoplay: {
+            delay: 2000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+        speed: 3000,
+        loop: true,
+        slidesPerView:5,
+        spaceBetween: 1,
+        centeredSlides : true,
+        watchSlidesProgress : true,
+        on: {
+            setTranslate: function(){
+                slides = this.slides
+                for(i=0; i< slides.length; i++){
+                    slide = slides.eq(i)
+                    progress = slides[i].progress
+                    slide.transform('scale('+(1 - Math.abs(progress)/5)+')'); 
+                }   
+            },
+            setTransition: function(transition) {
+                for (var i = 0; i < this.slides.length; i++) {
+                    var slide = this.slides.eq(i)
+                    slide.transition(transition);
+                }
+            },
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+    
+    // 调整左右栏高度
+    function adjustHeights() {
+        var div1 = $(".n_left");
+        var h1 = $(div1).height();
+        var div2 = $(".n_right");
+        var h2 = $(div2).height();
+        
+        if (h1 > h2) {
+            div2.css("height", h1);
+        } else {
+            div1.css("height", h2);
+        }
+    }
+    
+    adjustHeights();
+ 
+    // 模态窗口控制
+    var imageModal = document.getElementById("imageModal");
+    var pdfModal = document.getElementById("pdfModal");
+    var modalImg = document.getElementById("modalImage");
+    var modalPdf = document.getElementById("modalPdf");
+    var span = document.getElementsByClassName("close");
+    
+    // 点击图片打开模态窗口
+    $(document).on('click', '.thumbnail-image', function(){
+        imageModal.style.display = "block";
+        modalImg.src = this.dataset.src;
+        modalImg.alt = this.dataset.title || "图片";
+    });
+    
+    // 点击PDF打开模态窗口
+    $(document).on('click', '.thumbnail-pdf', function(){
+        pdfModal.style.display = "block";
+        modalPdf.src = this.dataset.src;
+    });
+    
+    // 点击关闭按钮
+    span[0].onclick = function() {
+        imageModal.style.display = "none";
+    }
+    
+    span[1].onclick = function() {
+        pdfModal.style.display = "none";
+        modalPdf.src = ""; // 清空PDF iframe
+    }
+    
+    // 点击模态窗口外部关闭
+    window.onclick = function(event) {
+        if (event.target == imageModal) {
+            imageModal.style.display = "none";
+        }
+        if (event.target == pdfModal) {
+            pdfModal.style.display = "none";
+            modalPdf.src = "";
+        }
+    }
+
+    // 科研成果子菜单切换
+    $("#researchLink").click(function() {
+        $("#researchSubmenu").slideToggle(200);
+        $(this).toggleClass("active");
+    });
+    
+    // 团队成员子菜单切换
+    $("#teamLink").click(function() {
+        $("#teamSubmenu").slideToggle(200);
+        $(this).toggleClass("active");
+    });
+    
+    // 团队成员点击处理
+    $(".member-link").click(function(e) {
+        e.stopPropagation();
+        // 移除所有成员链接的active类
+        $(".member-link").removeClass("active");
+        // 为当前点击的成员添加active类
+        $(this).addClass("active");
+        
+        // 加载对应成员的PDF内容
+        var pdfPath = $(this).data("pdf");
+        var memberName = $(this).data("name");
+        loadMemberContent(pdfPath, memberName);
+        
+        // 更新当前位置
+        updatePosition('团队成员 >> ' + memberName);
+        
+        // 设置团队菜单为激活状态
+        setActiveLink($("#teamLink"));
+    });
+
+    // 团队菜单点击处理
+    $("#teamLink").click(function(e) {
+        e.stopPropagation();
+        // 不直接加载内容，只切换子菜单
+        updatePosition('团队成员');
+        setActiveLink(this);
+        $("#researchSubmenu").slideUp();
+        $("#researchLink").removeClass("active");
+        
+        // 如果是第一次打开团队菜单，默认加载第一个成员的内容
+        if ($("#teamSubmenu").is(":visible") && $("#currentContent").find("iframe").attr("src") === undefined) {
+            var firstMember = $(".member-link").first();
+            var pdfPath = firstMember.data("pdf");
+            var memberName = firstMember.data("name");
+            loadMemberContent(pdfPath, memberName);
+        }
+    });
+
+    function setActiveLink(link) {
+        $(".subcontent a").removeClass("on");
+        $(link).addClass("on");
+    }
+    
+    function updatePosition(pageName) {
+        $(".position a:last").remove();
+        $(".position").append('<a href="jxcgjs.htm">>>' + pageName + '</a>');
+    }
+    
+    function loadContent(type) {
+        $("#loadingIndicator").show();
+        $("#currentContent").hide();
+        
+        setTimeout(function() {
+            $("#loadingIndicator").hide();
+            
+            $("#currentContent").html(contentHtml);
+            $("#currentContent").show();
+            
+            // 调整高度
+            adjustHeights();
+        }, 500);
+    }
+    
+    // 加载团队成员内容
+    function loadMemberContent(pdfPath, memberName) {
+        $("#loadingIndicator").show();
+        $("#currentContent").hide();
+        
+        setTimeout(function() {
+            $("#loadingIndicator").hide();
+            
+            var contentHtml = `
+                <div class="NewsContent">
+                    <iframe width="100%" height="800" src="${pdfPath}" style="border:1px solid #DDDDDD"></iframe>
+                </div>
+            `;
+            
+            $("#currentContent").html(contentHtml);
+            $("#currentContent").show();
+            
+            // 调整高度
+            adjustHeights();
+        }, 500);
+    }
+});
+</script>
+
+</body>
+</html>

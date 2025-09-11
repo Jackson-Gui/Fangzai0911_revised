@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成果获奖图片展示 - 河北省教学成果奖申报展示网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e62ae 0%, #0d4a9e 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .filter-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #1e62ae;
+            font-weight: bold;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #e8f0fe;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #1e62ae;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover {
+            background-color: #d0e3ff;
+        }
+        
+        .filter-btn.active {
+            background-color: #1e62ae;
+            color: white;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .gallery-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .gallery-info {
+            padding: 15px;
+        }
+        
+        .gallery-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .gallery-desc {
+            font-size: 13px;
+            color: #777;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .page-btn:hover {
+            background-color: #f0f5ff;
+            border-color: #1e62ae;
+        }
+        
+        .page-btn.active {
+            background-color: #1e62ae;
+            color: white;
+            border-color: #1e62ae;
+        }
+        
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow: auto;
+            padding: 50px 0;
+        }
+        
+        .modal-content {
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+        
+        .modal-info {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: #f0f5ff;
+        }
+        
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .prev-btn {
+            left: 30px;
+        }
+        
+        .next-btn {
+            right: 30px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            
+            .gallery-img {
+                height: 150px;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+            
+            .nav-btn {
+                font-size: 30px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .prev-btn {
+                left: 10px;
+            }
+            
+            .next-btn {
+                right: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            header {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+        }
+        
+        .module-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #e8f0fe;
+            color: #1e62ae;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        
+        .loading-indicator {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .no-images {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            grid-column: 1 / -1;
+        }
+        
+        .path-debug {
+            background: #ffe6e6;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+ 
+        <div class="gallery" id="imageGallery">
+            <div class="loading-indicator">正在加载图片...</div>
+        </div>
+        
+        <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+        </div>
+    </div>
+    
+    <!-- 图片预览模态框 -->
+    <div class="modal" id="imageModal">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <span class="nav-btn prev-btn" id="prevBtn">&#10094;</span>
+        <span class="nav-btn next-btn" id="nextBtn">&#10095;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-info" id="modalInfo"></div>
+    </div>
+
+    <script>
+        // 图片数据
+ const images = [
+{ id: 1, title: "教师团队荣誉证明01", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (1).jpg" },
+{ id: 2, title: "教师团队荣誉证明2", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (2).jpg" },
+{ id: 3, title: "教师团队荣誉证明3", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (3).jpg" },
+{ id: 4, title: "教师团队荣誉证明4", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (4).jpg" },
+{ id: 5, title: "教师团队荣誉证明5", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (5).jpg" },
+{ id: 6, title: "教师团队荣誉证明6", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (6).jpg" },
+{ id: 7, title: "教师团队荣誉证明7", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (7).jpg" },
+{ id: 8, title: "教师团队荣誉证明8", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (8).jpg" },
+{ id: 9, title: "教师团队荣誉证明9", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (9).jpg" },
+{ id: 10, title: "教师团队荣誉证明10", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (10).jpg" },
+{ id: 11, title: "教师团队荣誉证明11", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (11).jpg" },
+{ id: 12, title: "教师团队荣誉证明12", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (12).jpg" },
+{ id: 13, title: "教师团队荣誉证明13", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (13).jpg" },
+{ id: 14, title: "教师团队荣誉证明14", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (14).jpg" },
+{ id: 15, title: "教师团队荣誉证明15", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (15).jpg" },
+{ id: 16, title: "教师团队荣誉证明16", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (16).jpg" },
+{ id: 17, title: "教师团队荣誉证明17", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (17).jpg" },
+{ id: 18, title: "教师团队荣誉证明18", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (18).jpg" },
+{ id: 19, title: "教师团队荣誉证明19", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (19).jpg" },
+{ id: 20, title: "教师团队荣誉证明20", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (20).jpg" },
+{ id: 21, title: "教师团队荣誉证明21", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (21).jpg" },
+{ id: 22, title: "教师团队荣誉证明22", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (22).jpg" },
+{ id: 23, title: "教师团队荣誉证明23", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (23).jpg" },
+{ id: 24, title: "教师团队荣誉证明24", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (24).jpg" },
+{ id: 25, title: "教师团队荣誉证明25", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (25).jpg" },
+{ id: 26, title: "教师团队荣誉证明26", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (26).jpg" },
+{ id: 27, title: "教师团队荣誉证明27", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (27).jpg" },
+{ id: 28, title: "教师团队荣誉证明28", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (28).jpg" },
+{ id: 29, title: "教师团队荣誉证明29", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (29).jpg" },
+{ id: 30, title: "教师团队荣誉证明30", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (30).jpg" },
+{ id: 31, title: "教师团队荣誉证明31", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (31).jpg" },
+{ id: 32, title: "教师团队荣誉证明32", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (32).jpg" },
+{ id: 33, title: "教师团队荣誉证明33", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (33).jpg" },
+{ id: 34, title: "教师团队荣誉证明34", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (34).jpg" },
+{ id: 35, title: "教师团队荣誉证明35", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (35).jpg" },
+{ id: 36, title: "教师团队荣誉证明36", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (36).jpg" },
+{ id: 37, title: "教师团队荣誉证明37", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (37).jpg" },
+{ id: 38, title: "教师团队荣誉证明38", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (38).jpg" },
+{ id: 39, title: "教师团队荣誉证明39", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (39).jpg" },
+{ id: 40, title: "教师团队荣誉证明40", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (40).jpg" },
+{ id: 41, title: "教师团队荣誉证明41", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (41).jpg" },
+{ id: 42, title: "教师团队荣誉证明42", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (42).jpg" },
+{ id: 43, title: "教师团队荣誉证明43", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (43).jpg" },
+{ id: 44, title: "教师团队荣誉证明44", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (44).jpg" },
+{ id: 45, title: "教师团队荣誉证明45", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (45).jpg" },
+{ id: 46, title: "教师团队荣誉证明46", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (46).jpg" },
+{ id: 47, title: "教师团队荣誉证明47", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (47).jpg" },
+{ id: 48, title: "教师团队荣誉证明48", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (48).jpg" },
+{ id: 49, title: "教师团队荣誉证明49", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (49).jpg" },
+{ id: 50, title: "教师团队荣誉证明50", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (50).jpg" },
+{ id: 51, title: "教师团队荣誉证明51", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (51).jpg" },
+{ id: 52, title: "教师团队荣誉证明52", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (52).jpg" },
+{ id: 53, title: "教师团队荣誉证明53", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (53).jpg" },
+{ id: 54, title: "教师团队荣誉证明54", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (54).jpg" },
+{ id: 55, title: "教师团队荣誉证明55", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (55).jpg" },
+{ id: 56, title: "教师团队荣誉证明56", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (56).jpg" },
+{ id: 57, title: "教师团队荣誉证明57", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (57).jpg" },
+{ id: 58, title: "教师团队荣誉证明58", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (58).jpg" },
+{ id: 59, title: "教师团队荣誉证明59", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (59).jpg" },
+{ id: 60, title: "教师团队荣誉证明60", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (60).jpg" },
+{ id: 61, title: "教师团队荣誉证明61", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (61).jpg" },
+{ id: 62, title: "教师团队荣誉证明62", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (62).jpg" },
+{ id: 63, title: "教师团队荣誉证明63", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (63).jpg" },
+{ id: 64, title: "教师团队荣誉证明64", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (64).jpg" },
+{ id: 65, title: "教师团队荣誉证明65", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (65).jpg" },
+{ id: 66, title: "教师团队荣誉证明66", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (66).jpg" },
+{ id: 67, title: "教师团队荣誉证明67", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (67).jpg" },
+{ id: 68, title: "教师团队荣誉证明68", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (68).jpg" },
+{ id: 69, title: "教师团队荣誉证明69", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (69).jpg" },
+{ id: 70, title: "教师团队荣誉证明70", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (70).jpg" },
+{ id: 71, title: "教师团队荣誉证明71", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (71).jpg" },
+{ id: 72, title: "教师团队荣誉证明72", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (72).jpg" },
+{ id: 73, title: "教师团队荣誉证明73", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (73).jpg" },
+{ id: 74, title: "教师团队荣誉证明74", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (74).jpg" },
+{ id: 75, title: "教师团队荣誉证明75", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (75).jpg" },
+{ id: 76, title: "教师团队荣誉证明76", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (76).jpg" },
+{ id: 77, title: "教师团队荣誉证明77", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (77).jpg" },
+{ id: 78, title: "教师团队荣誉证明78", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (78).jpg" },
+{ id: 79, title: "教师团队荣誉证明79", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (79).jpg" },
+{ id: 80, title: "教师团队荣誉证明80", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (80).jpg" },
+{ id: 81, title: "教师团队荣誉证明81", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (81).jpg" },
+{ id: 82, title: "教师团队荣誉证明82", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (82).jpg" },
+{ id: 83, title: "教师团队荣誉证明83", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (83).jpg" },
+{ id: 84, title: "教师团队荣誉证明84", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (84).jpg" },
+{ id: 85, title: "教师团队荣誉证明85", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (85).jpg" },
+{ id: 86, title: "教师团队荣誉证明86", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (86).jpg" },
+{ id: 87, title: "教师团队荣誉证明87", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (87).jpg" },
+{ id: 88, title: "教师团队荣誉证明88", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (88).jpg" },
+{ id: 89, title: "教师团队荣誉证明89", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (89).jpg" },
+{ id: 90, title: "教师团队荣誉证明90", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (90).jpg" },
+{ id: 91, title: "教师团队荣誉证明91", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (91).jpg" },
+{ id: 92, title: "教师团队荣誉证明92", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (92).jpg" },
+{ id: 93, title: "教师团队荣誉证明93", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (93).jpg" },
+{ id: 94, title: "教师团队荣誉证明94", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (94).jpg" },
+{ id: 95, title: "教师团队荣誉证明95", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (95).jpg" },
+{ id: 96, title: "教师团队荣誉证明96", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (96).jpg" },
+{ id: 97, title: "教师团队荣誉证明97", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (97).jpg" },
+{ id: 98, title: "教师团队荣誉证明98", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (98).jpg" },
+{ id: 99, title: "教师团队荣誉证明99", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (99).jpg" },
+{ id: 100, title: "教师团队荣誉证明100", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (100).jpg" },
+{ id: 101, title: "教师团队荣誉证明101", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (101).jpg" },
+{ id: 102, title: "教师团队荣誉证明102", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (102).jpg" },
+{ id: 103, title: "教师团队荣誉证明103", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (103).jpg" },
+{ id: 104, title: "教师团队荣誉证明104", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (104).jpg" },
+{ id: 105, title: "教师团队荣誉证明105", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (105).jpg" },
+{ id: 106, title: "教师团队荣誉证明106", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (106).jpg" },
+{ id: 107, title: "教师团队荣誉证明107", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (107).jpg" },
+{ id: 108, title: "教师团队荣誉证明108", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (108).jpg" },
+{ id: 109, title: "教师团队荣誉证明109", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (109).jpg" },
+{ id: 110, title: "教师团队荣誉证明110", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (110).jpg" },
+{ id: 111, title: "教师团队荣誉证明111", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (111).jpg" },
+{ id: 112, title: "教师团队荣誉证明112", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (112).jpg" },
+{ id: 113, title: "教师团队荣誉证明113", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (113).jpg" },
+{ id: 114, title: "教师团队荣誉证明114", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (114).jpg" },
+{ id: 115, title: "教师团队荣誉证明115", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (115).jpg" },
+{ id: 116, title: "教师团队荣誉证明116", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (116).jpg" },
+{ id: 117, title: "教师团队荣誉证明117", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (117).jpg" },
+{ id: 118, title: "教师团队荣誉证明118", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (118).jpg" },
+{ id: 119, title: "教师团队荣誉证明119", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (119).jpg" },
+{ id: 120, title: "教师团队荣誉证明120", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (120).jpg" },
+{ id: 121, title: "教师团队荣誉证明121", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (121).jpg" },
+{ id: 122, title: "教师团队荣誉证明122", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (122).jpg" },
+{ id: 123, title: "教师团队荣誉证明123", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (123).jpg" },
+{ id: 124, title: "教师团队荣誉证明124", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (124).jpg" },
+{ id: 125, title: "教师团队荣誉证明125", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (125).jpg" },
+{ id: 126, title: "教师团队荣誉证明126", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (126).jpg" },
+{ id: 127, title: "教师团队荣誉证明127", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (127).jpg" },
+{ id: 128, title: "教师团队荣誉证明128", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (128).jpg" },
+{ id: 129, title: "教师团队荣誉证明129", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (129).jpg" },
+{ id: 130, title: "教师团队荣誉证明130", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (130).jpg" },
+{ id: 131, title: "教师团队荣誉证明131", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (131).jpg" },
+{ id: 132, title: "教师团队荣誉证明132", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (132).jpg" },
+{ id: 133, title: "教师团队荣誉证明133", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (133).jpg" },
+{ id: 134, title: "教师团队荣誉证明134", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (134).jpg" },
+{ id: 135, title: "教师团队荣誉证明135", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (135).jpg" },
+{ id: 136, title: "教师团队荣誉证明136", module: "syqd", desc: "教学成效：成果应用与人才培养", filename: "4_1_cx_jstdryzm (136).jpg" },
+        ];
+
+        // 模块名称映射
+        const moduleNames = {
+            "yhy1": "一核引领",
+            "syqd": "双翼驱动",
+            "syxt": "三元协同",
+            "cx": "成效展示"
+        };
+
+        // 初始化画廊
+        function initGallery() {
+            const gallery = document.getElementById('imageGallery');
+            gallery.innerHTML = '';
+            
+            if (images.length === 0) {
+                gallery.innerHTML = '<div class="no-images">暂无图片数据</div>';
+                return;
+            }
+            
+            images.forEach(image => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.dataset.module = image.module;
+                
+                // 使用实际图片路径
+                const imgUrl = `../images/TotalAttachment/4_1_cx_jstdryzm/${image.filename}`;
+                
+                item.innerHTML = `
+                    <img src="${imgUrl}" alt="${image.title}" class="gallery-img" 
+                         onerror="this.onerror=null; this.src='https://picsum.photos/300/200?random=${image.id}';">
+                    <div class="gallery-info">
+                        <div class="gallery-title">${image.title}</div>
+                        <div class="gallery-desc">${image.desc}</div>
+                        <div class="module-tag">${moduleNames[image.module]}</div>
+                    </div>
+                `;
+                
+                item.addEventListener('click', () => openModal(image));
+                gallery.appendChild(item);
+            });
+            
+            // 隐藏加载指示器
+            document.querySelector('.loading-indicator')?.remove();
+        }
+
+        // 打开模态框
+        function openModal(image) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalInfo = document.getElementById('modalInfo');
+            
+            // 使用实际图片路径
+            modalImage.src = `../images/TotalAttachment/4_1_cx_jstdryzm/${image.filename}`;
+            modalInfo.textContent = `${image.desc} - ${image.title}`;
+            
+            // 添加错误处理
+            modalImage.onerror = function() {
+                this.src = `https://picsum.photos/800/600?random=${image.id}`;
+                modalInfo.textContent = `${image.desc} - ${image.title} (图片加载失败，显示替代图片)`;
+            };
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // 设置当前图片索引
+            currentImageIndex = images.findIndex(img => img.id === image.id);
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 切换图片
+        function navigateImage(direction) {
+            currentImageIndex += direction;
+            
+            // 循环导航
+            if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            } else if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            }
+            
+            const image = images[currentImageIndex];
+            const modalImage = document.getElementById('modalImage');
+            const modalInfo = document.getElementById('modalInfo');
+            
+            // 使用实际图片路径
+            modalImage.src = `../images/TotalAttachment/4_1_cx_jstdryzm/${image.filename}`;
+            modalInfo.textContent = `${image.desc} - ${image.title}`;
+            
+            // 添加错误处理
+            modalImage.onerror = function() {
+                this.src = `https://picsum.photos/800/600?random=${image.id}`;
+                modalInfo.textContent = `${image.desc} - ${image.title} (图片加载失败，显示替代图片)`;
+            };
+        }
+
+        // 筛选图片
+        function filterImages(module) {
+            const items = document.querySelectorAll('.gallery-item');
+            let visibleCount = 0;
+            
+            items.forEach(item => {
+                if (module === 'all' || item.dataset.module === module) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // 如果没有图片显示，显示提示信息
+            if (visibleCount === 0) {
+                const gallery = document.getElementById('imageGallery');
+                if (!gallery.querySelector('.no-images')) {
+                    gallery.innerHTML = '<div class="no-images">该分类下暂无图片</div>';
+                }
+            } else {
+                // 确保提示信息被移除
+                const noImages = document.querySelector('.no-images');
+                if (noImages) noImages.remove();
+            }
+            
+            // 更新激活的筛选按钮
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === module) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // 初始化
+        let currentImageIndex = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // 模拟图片加载延迟
+            setTimeout(initGallery, 1000);
+            
+            // 模态框事件
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            document.getElementById('prevBtn').addEventListener('click', () => navigateImage(-1));
+            document.getElementById('nextBtn').addEventListener('click', () => navigateImage(1));
+            
+            // 点击模态框背景关闭
+            document.getElementById('imageModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('imageModal')) {
+                    closeModal();
+                }
+            });
+            
+            // 筛选按钮事件
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterImages(btn.dataset.filter);
+                });
+            });
+            
+            // 分页按钮事件
+            document.querySelectorAll('.page-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    // 实际应用中这里会加载对应页码的图片
+                });
+            });
+            
+            // 添加键盘导航支持
+            document.addEventListener('keydown', (e) => {
+                const modal = document.getElementById('imageModal');
+                if (modal.style.display === 'block') {
+                    if (e.key === 'Escape') {
+                        closeModal();
+                    } else if (e.key === 'ArrowLeft') {
+                        navigateImage(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        navigateImage(1);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

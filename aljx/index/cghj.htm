@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成果获奖-河北省高等教育（研究生）教学成果奖申报展示网站</title>
+<META Name="keywords" Content="河北省高等教育（研究生）教学成果奖申报展示网站" />
+
+<link rel="stylesheet" type="text/css" href="../../style/yjsjxcg.css">
+<link rel="stylesheet" href="../../style/swiper.min.css">
+<script src="../../js/jquery.min.js"></script>
+    
+<!--Announced by Visual SiteBuilder 9-->
+<link rel="stylesheet" type="text/css" href="../../_sitegray/_sitegray_d.css" />
+<script language="javascript" src="../../_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:7765626265723230747f465550545742000000024f53 -->
+<link rel="stylesheet" type="text/css" href="../../NewSubListDetail3.vsb.css" />
+<script type="text/javascript" src="/system/resource/js/vsbscreen.min.js" id="_vsbscreen" devices="pc|mobile|pad"></script>
+<script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1107,'/NewSubListDetail3.jsp',-1,1874196658)</script>
+
+<style>
+    /* 自定义样式 */
+    .awards-container {
+        margin-top: 50px;
+        text-align: center;
+    }
+    
+    .awards-tabs-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
+    
+    .awards-tabs {
+        display: flex;
+        border-radius: 12px;
+        background: #f0f6ff;
+        padding: 8px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        width: 35%;
+        max-width: 280px;
+    }
+    
+    .awards-tab {
+        padding: 6px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #555;
+        transition: all 0.3s;
+        border-radius: 8px;
+        margin: 0 8px;
+        flex: 1;
+        text-align: center;
+        font-size: 18px;
+        min-width: 0;
+        white-space: nowrap;
+    }
+    
+    .awards-tab.active {
+        background: #1e62ae;
+        color: white;
+        box-shadow: 0 6px 12px rgba(30, 98, 174, 0.4);
+    }
+    
+    .awards-content {
+        display: none;
+        text-align: left;
+    }
+    
+    .awards-content.active {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    .award-item {
+        padding: 15px 20px;
+        margin-bottom: 15px;
+        border-left: 4px solid #1e62ae;
+        background: #f9f9f9;
+        border-radius: 0 5px 5px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+    
+    .award-item:hover {
+        transform: translateX(5px);
+        background: #f0f6ff;
+    }
+    
+    .award-year {
+        font-weight: bold;
+        color: #1e62ae;
+        margin-right: 10px;
+        background: #e0ecff;
+        padding: 3px 8px;
+        border-radius: 3px;
+    }
+    
+    .award-level {
+        font-weight: bold;
+        color: #d35400;
+        margin-left: 10px;
+    }
+    
+    .award-org {
+        color: #7f8c8d;
+        font-size: 14px;
+        margin-top: 5px;
+        font-style: italic;
+    }
+    
+    .floating-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #0074BD, #10559D);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+        cursor: pointer;
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
+
+    .floating-btn:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.7);
+    }
+
+    .floating-btn img {
+        width: 70%;
+        height: 70%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+
+    .floating-btn .tooltip {
+        position: absolute;
+        bottom: 90px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .floating-btn:hover .tooltip {
+        opacity: 1;
+    }
+    
+    .subcontent a {
+        display: block;
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        text-decoration: none;
+        color: #333;
+        border-left: 3px solid transparent;
+        transition: all 0.3s;
+    }
+    
+    .subcontent a:hover, .subcontent a.on {
+        background-color: #f5f5f5;
+        border-left-color: #1e62ae;
+        color: #1e62ae;
+        font-weight: bold;
+    }
+    
+    /* 新增样式 */
+    .module-title {
+        font-weight: bold;
+        background-color: #e0ecff;
+        padding: 12px 15px;
+        margin-top: 10px;
+        border-left: 4px solid #1e62ae;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .module-title:hover {
+        background-color: #d0e0ff;
+    }
+    
+    .sub-modules {
+        display: none;
+        padding-left: -5px;
+    }
+    
+    .sub-modules.active {
+        display: block;
+    }
+    
+    .content-viewer {
+        display: none;
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    
+    .content-viewer.active {
+        display: block;
+    }
+    
+    .pdf-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .pdf-list li {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .pdf-list a {
+        color: #1e62ae;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+    
+    .pdf-list a:hover {
+        text-decoration: underline;
+    }
+    
+    .pdf-list a::before {
+        content: "📄";
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .image-item {
+        width: calc(33.333% - 15px);
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .image-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+    
+    .image-item:hover img {
+        transform: scale(1.05);
+    }
+    
+    @media (max-width: 768px) {
+        .awards-tabs {
+            flex-direction: column;
+            width: 30%;
+        }
+        
+        .awards-tab {
+            margin-bottom: 10px;
+            padding: 15px;
+            font-size: 16px;
+        }
+        
+        .image-item {
+            width: calc(50% - 10px);
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .image-item {
+            width: 100%;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="top_line">
+<div class="wid_main">
+     <h4>欢迎您访问防灾科技学院河北省高等教育（研究生）教学成果奖申报展示网站，推荐使用谷歌浏览器、微软Edge浏览器或者360极速模式</h4>
+   </div>
+</div>
+
+<div class="cg_top_logo">
+ <div class="wid_main">
+        <div class="cg_logo">
+<script language="javascript" src="/system/resource/js/dynclicks.js"></script>
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+    <td><img src="../images/logo0311.png" border="0"></td>
+        </tr>
+        </table></div>
+  </div>
+</div>
+
+<div class="cg_top_nav">
+ <div class="wid_main">
+    <div class="cg_dh">
+        <ul>                               
+            <li><a href="../index.htm">首页</a></li>                                   
+            <li><a href="../cgjs/jxcgjs.htm">成果介绍</a></li>                                   
+            <li><a href="../cgzj/jxcgzjbg.htm">成果总结</a></li>                                   
+            <li><a href="../cgyy/jxcgyyjxgzmcl.htm">成果应用</a></li>                                   
+            <li><a href="../mtbd/jsldsrgbrw.htm">媒体报道</a></li>                                   
+        </ul>
+    </div>
+</div>
+</div>
+
+<!-- 灾害模拟实验室悬浮按钮 -->
+<a href="https://roma.720yun.com/vr/5a197f5f3d76a5e6/" target="_blank">
+    <div class="floating-btn">
+        <img src="../images/FirstPageImages/Zaihaimonishiyanshi.jpg" alt="灾害模拟实验室">
+        <div class="tooltip">进入</div>
+    </div>
+</a>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">       
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (0).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (2).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (3).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (4).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (5).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (6).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (7).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (8).jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="" title="" target="_blank"><img class="swiper_slide_img" src="../images/FirstPageImages/FirstPageImages (9).jpg" alt=""></a></div>
+    </div>
+
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+<div class="list_main">
+  <div class="wid_main">
+    <div class="n_left">
+      <div class="ListColumnTitle"> <span>首页</span></div>
+      <div class="subcontent">
+        <!-- 模块导航保持原样 -->
+        <div class="module-title" data-module="yhy1">一核引领：党建荣誉证明</div>
+        <div class="sub-modules" id="yhy1-sub">
+          <a href="javascript:void(0);" data-content="yhy1-1" data-url="党建荣誉证明.htm"><strong>党建荣誉证明</strong></a>
+        </div>
+
+        <div class="module-title" data-module="syqd">双翼驱动：教学资源与平台建设</div>
+        <div class="sub-modules" id="syqd-sub">
+          <a href="javascript:void(0);" data-content="syqd-1" data-url="震害现场教学资源开发.htm"><strong>震害现场教学资源开发</strong></a>
+          <a href="javascript:void(0);" data-content="syqd-2" data-url="校内防震减灾教、科研实践平台.htm"><strong>校内防震减灾教、科研实践平台</strong></a>
+        </div>
+
+        <div class="module-title" data-module="syxt">三元协同：合作模式创新</div>
+        <div class="sub-modules" id="syxt-sub">
+          <a href="javascript:void(0);" data-content="syxt-1" data-url="校所合作证明.htm"><strong>校所合作证明</strong></a>
+          <a href="javascript:void(0);" data-content="syxt-2" data-url="校局合作证明.htm"><strong>校局合作证明</strong></a>
+          <a href="javascript:void(0);" data-content="syxt-3" data-url="校企合作证明.htm"><strong>校企合作证明</strong></a>
+        </div>
+
+        <div class="module-title" data-module="cx">教学成效：成果应用与人才培养</div>
+        <div class="sub-modules" id="cx-sub">
+          <a href="javascript:void(0);" data-content="cx-1" data-url="教师团队荣誉证明.htm"><strong>教师团队荣誉证明</strong></a>
+          <a href="javascript:void(0);" data-content="cx-2" data-url="教研教改项目.htm"><strong>教研教改项目</strong></a>
+          <a href="javascript:void(0);" data-content="cx-3" data-url="科技奖励、科研项目及社会服务证明.htm"><strong>科技奖励、科研项目及社会服务证明</strong></a>
+          <a href="javascript:void(0);" data-content="cx-4" data-url="研究生代表性成果证明.htm"><strong>研究生代表性成果证明</strong></a>
+          <a href="javascript:void(0);" data-content="cx-5" data-url="人才培养成效证明.htm"><strong>人才培养成效证明</strong></a>
+        </div>
+      </div>
+    </div>
+
+<!-- ========== 右侧主区域 ========== -->
+<div class="n_right">
+  <div class="list-title">
+    <div class="position">当前位置:
+      <a href="../index.htm">首页</a>
+      <a href="cghj.htm">>> 成果获奖</a>
+    </div>
+  </div>
+
+  <!-- 一核引领：党建荣誉证明 -->
+  <div class="content-viewer" id="yhy1-1-content">
+    <h2>党建荣誉证明</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/1. 一核引领： 党建荣誉证明.pdf" target="_blank">📄 一核引领：党建荣誉证明.pdf</a></li>
+    </ul>
+    <!-- 统一右侧预览区 -->
+    <div class="right-preview" style="height:600px;">
+      <iframe src="党建荣誉证明.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 双翼驱动：震害现场教学资源开发 -->
+  <div class="content-viewer" id="syqd-1-content">
+    <h2>震害现场教学资源开发</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/2-1. 双翼驱动：震害现场教学资源开发.pdf" target="_blank">📄 双翼驱动：震害现场教学资源开发.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="双翼驱动：教学资源与平台建设1.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 双翼驱动：校内防震减灾教、科研实践平台 -->
+  <div class="content-viewer" id="syqd-2-content">
+    <h2>校内防震减灾教、科研实践平台</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/2-2. 双翼驱动：校内防震减灾教、科研实践平台.pdf" target="_blank">📄 双翼驱动：校内防震减灾教、科研实践平台.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="双翼驱动：教学资源与平台建设2.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 三元协同：校所合作证明 -->
+  <div class="content-viewer" id="syxt-1-content">
+    <h2>校所合作证明</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/3-1. 三元协同：校所合作证明.pdf" target="_blank">📄 三元协同：校所合作证明.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="三元协同：合作模式创新1.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 三元协同：校局合作证明 -->
+  <div class="content-viewer" id="syxt-2-content">
+    <h2>校局合作证明</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/3-2. 三元协同：校园合作证明.pdf" target="_blank">📄 三元协同：校局合作证明.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="三元协同：合作模式创新2.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 三元协同：校企合作证明 -->
+  <div class="content-viewer" id="syxt-3-content">
+    <h2>校企合作证明</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/3-3. 三元协同：校企合作证明.pdf" target="_blank">📄 三元协同：校企合作证明.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="三元协同：合作模式创新3.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 教学成效：教师团队荣誉证明 -->
+  <div class="content-viewer" id="cx-1-content">
+    <h2>教师团队荣誉证明</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/4-1. 成效：教师团队荣誉证明.pdf" target="_blank">📄 成效：教师团队荣誉证明.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="教学成效：成果应用与人才培养1.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 教学成效：教研教改项目 -->
+  <div class="content-viewer" id="cx-2-content">
+    <h2>教研教改项目</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/4-2. 成效：教研教改项目.pdf" target="_blank">📄 成效：教研教改项目.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="教学成效：成果应用与人才培养2.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 教学成效：科技奖励、科研项目及社会服务证明 -->
+  <div class="content-viewer" id="cx-3-content">
+    <h2>科技奖励、科研项目及社会服务证明</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/4-3. 成效：科技奖励、科研项目及社会服务证明.pdf" target="_blank">📄 成效：科技奖励、科研项目及社会服务证明.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="教学成效：成果应用与人才培养3.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 教学成效：研究生代表性成果证明 -->
+  <div class="content-viewer" id="cx-4-content">
+    <h2>研究生代表性成果证明</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/4-4. 成效：研究生代表性成果证明.pdf" target="_blank">📄 成效：研究生代表性成果证明.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="教学成效：成果应用与人才培养4.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 教学成效：人才培养成效证明 -->
+  <div class="content-viewer" id="cx-5-content">
+    <h2>人才培养成效证明</h2>
+    <ul class="pdf-list">
+      <li><a href="../pdfs/4-5. 成效：人才培养成效证明.pdf" target="_blank">📄 成效：人才培养成效证明.pdf</a></li>
+    </ul>
+    <div class="right-preview" style="height:600px;">
+      <iframe src="教学成效：成果应用与人才培养5.htm" style="width:100%;height:100%;border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- 底部分页等保持原样 -->
+  <link rel="stylesheet" Content-type="text/css" href="/system/resource/css/pagedown/sys.css">
+  <div id="pager" class="pager" style="margin-top:10px;text-align:center;">
+    <span class="p_pages">
+      <span class="p_first_d p_fun_d">首页</span>
+      <span class="p_prev_d p_fun_d">上页</span>
+      <span class="p_no_d">1</span>
+      <span class="p_next_d p_fun_d">下页</span>
+      <span class="p_last_d p_fun_d">尾页</span>
+    </span>
+  </div>
+  <script>_showDynClickBatch(['dynclicks_u6_1094','dynclicks_u6_1132','dynclicks_u6_1133','dynclicks_u6_1134','dynclicks_u6_1135'],[1094,1132,1133,1134,1135],"wbnews", 1874196658)</script>
+</div>
+<!-- ========== 右侧主区域结束 ========== -->
+</div>
+
+
+
+<div class="footer"><div class="copyright"><p>CopyRight © 防灾科技学院地震工程与建筑安全学院&nbsp;&nbsp;2025&nbsp;&nbsp;All Rights Reserved&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;版权所有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div></div>
+
+<script src="../../js/swiper.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    // 导航下拉
+    $(".cg_top_nav  .wid_main .cg_dh ul li").hover(function(){
+        $(this).find("ul").slideToggle(200);        
+    });
+    
+    // Banner轮播
+    var swiper = new Swiper('.swiper-container', {     
+        autoplay: {
+            delay: 2000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+        speed: 3000,
+        loop: true,
+        slidesPerView:5,
+        spaceBetween: 1,
+        centeredSlides : true,
+        watchSlidesProgress : true,
+        on: {
+            setTranslate: function(){
+                slides = this.slides
+                for(i=0; i< slides.length; i++){
+                    slide = slides.eq(i)
+                    progress = slides[i].progress
+                    slide.transform('scale('+(1 - Math.abs(progress)/5)+')'); 
+                }   
+            },
+            setTransition: function(transition) {
+                for (var i = 0; i < this.slides.length; i++) {
+                    var slide = this.slides.eq(i)
+                    slide.transition(transition);
+                }
+            },
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+    
+    // 左右栏高度对齐
+    var div1 = $(".n_left");
+    var h1 = $(div1).height();
+    var div2 = $(".n_right");
+    var h2 = $(div2).height();
+    
+    if (h1 > h2) {
+        div2.css("height", h1);
+    } else {
+        div1.css("height", h2);
+    }
+    
+    // 模块标题点击事件
+    $(".module-title").click(function() {
+        var moduleId = $(this).data("module");
+        $("#" + moduleId + "-sub").slideToggle(200);
+    });
+    
+    // 子模块链接点击事件
+    $(".sub-modules a").click(function() {
+        // 移除所有激活状态
+        $(".sub-modules a").removeClass("on");
+        // 添加当前激活状态
+        $(this).addClass("on");
+        
+        // 隐藏所有内容区域
+        $(".content-viewer").removeClass("active");
+        
+        // 显示选中的内容区域
+        var contentId = $(this).data("content") + "-content";
+        $("#" + contentId).addClass("active");
+    });
+});
+</script>
+</body>
+</html>

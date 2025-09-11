@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>成果获奖</title>
+<style>
+body{font-size:16px;line-height:1.3;margin:0;padding:10px;font-family:Arial,Helvetica,sans-serif;background:#fff}
+h3{margin:0 0 6px;font-size:16px;color:#1e62ae}
+/* 页签 */
+.tabs{display:flex;gap:6px;margin-bottom:8px}
+.tab{padding:4px 10px;border:1px solid #1e62ae;border-radius:4px;cursor:pointer;background:#f0f6ff;font-size:16px}
+.tab.on{background:#1e62ae;color:#fff}
+/* 排序开关 */
+.sort-bar{text-align:right;margin-bottom:4px;font-size:16px}
+.sort-bar span{cursor:pointer;color:#1e62ae;margin-left:6px}
+/* 列表 */
+ul{margin:0;padding-left:16px}
+li{margin-bottom:0.3px}
+.year{color:#1e62ae;font-weight:bold;margin-right:4px}
+.level{color:#d35400;font-size:16px;margin-left:4px}
+.org{color:#7f8c8d;font-size:16px}
+</style>
+</head>
+
+<body>
+<div class="tabs">
+  <div class="tab on" data-type="national">国家级</div>
+  <div class="tab" data-type="provincial">省部级</div>
+
+
+<div class="sort-bar">
+<span id="asc">正序</span> | <span id="desc" style="font-weight:bold">倒序</span>
+</div>
+</div>
+
+<ul id="list"></ul>
+
+<script>
+const raw=`2018年	全国高校黄大年式教师团队：土木工程教师团队	国家级	教育部
+2024年	研究生国家奖学金3项（郑文文、张学坦等）	国家级	教育部
+2017年	国家创新人才培养示范基地	国家级	科技部
+2017年	国家地震工程研究示范型国合基地	国家级	科技部
+2020年	全国地震系统先进集体	国家级	人力资源和社会保障部、中国地震局
+2024年	全国党建工作样板支部	国家级	教育部
+2019年	国务院政府特殊津贴（郭迅）	国家级	国务院
+2018年	全国技术能手（左彦峰）	国家级	人力资源和社会保障部
+2016年	国家科技进步二等奖：大型复杂结构在线混合试验关键技术与应用	国家级	国务院
+2024年	河北省防灾减灾研究生工作站	省部级	河北省教育厅
+2024年	第四届河北省高校教师教学创新大赛三等奖	省部级	河北省教育厅
+2024年	河北省优秀硕士学位论文2项（王严信、刘军香）	省部级	河北省教育厅
+2024年	河北省高校“双带头人”教师党支部书记“强国行”专项行动团队	省部级	河北省教育厅
+2023年	中央和国家机关“四强”党支部	省部级	中央和国家机关工作委员会
+2021年	河北省课程思政教学研究示范中心：防灾减灾课程思政教学研究示范中心	省部级	河北省教育厅
+2021年	河北省研究生教学研究示范中心：土木工程学院地震灾害防治课程思政教学研究示范中心	省部级	河北省教育厅
+2021年	河北省研究生课程思政示范课程、教学团队：地震工程学基础	省部级	河北省教育厅
+2022年	河北省研究生课程思政示范课程、教学团队：高等混凝土结构	省部级	河北省教育厅
+2023年	2022年度河北省高等学校优秀基层教学组织：土木工程地震灾害防治实践教学课程组	省部级	河北省教育厅
+2023年	2023年度河北省高等学校优秀基层教学组织：土木工程教研室	省部级	河北省教育厅
+2019年	中国地震局土木工程地震灾害防治创新团队	省部级	中国地震局
+2020年	中国地震局直属机关先进基层党组织：土木工程学院党总支	省部级	中国地震局直属机关党委
+2015年	河北省高等学校实验教学示范中心：灾害仿真模拟实验教学示范中心	省部级	河北省教育厅
+2012年	河北省大学生校外实践教育基地：防灾科技学院防震减灾综合能力培养与大学生社会实践基地	省部级	河北省教育厅
+2019年	中国地震局建筑物破坏机理与防御重点实验室	省部级	中国地震局
+2020年	河北省地震灾害防御与风险评价重点实验室	省部级	河北省科技厅
+2023年	河北省工程结构多灾害韧性与应急处置技术创新中心	省部级	河北省科技厅
+2025年	河北省工程防灾减灾国际联合研究中心	省部级	河北省科技厅
+2021年	河北省科普示范基地：自然灾害科普馆	省部级	河北省科技厅
+2020年	中国地质学会地学科普研学基地：灾害模拟实验室	省部级	中国地质学会
+2024年	河北省科学技术合作奖（戴君武）	省部级	河北省人民政府
+2015年	中国地震局防震减灾科技成果一等奖：大型复杂工程子结构混合实验基础理论与关键技术	省部级	中国地震局
+2021年	中国地震局防震减灾科学成果二等奖：工程结构抗震韧性关键技术及应用	省部级	中国地震局
+2020年	中国公路学会科学技术二等奖：超高延性混凝土材料性能创新及在桥梁工程中的应用技术	省部级	中国公路学会
+2021年	内蒙古自治区科技进步一等奖：考虑盐渍土腐蚀效应的混凝土桥梁抗震设计关键技术与应用	省部级	内蒙古自治区人民政府
+2023年	中国振动工程学会科学技术奖一等奖：工程随机动力作用的降维表达理论及高效模拟方法	省部级	中国振动工程学会
+2024年	中国建筑材料流通协会科学技术奖一等奖：水泥多颗粒聚集体分散剂制备关键技术及应用	省部级	中国建筑材料流通协会
+2022年	中国发明协会发明创业奖成果奖一等奖：重要文物及建筑减隔震防护技术与装置应用	省部级	中国发明协会
+2024年	湖北省自然科学奖二等奖：灾害性随机动力作用的降维建模理论及方法	省部级	湖北省人民政府
+2019年	中国地震局直属机关优秀共产党员（郭迅）	省部级	中国地震局直属机关党委
+2015年	防震减灾先进个人（郭迅）	省部级	中国地震局
+2022年	河北省师德标兵（孙治国）	省部级	河北省教育厅
+2024年	河北省拔尖人才（孙治国）	省部级	河北省人民政府
+2019年	中国地震局青年人才（孙治国）	省部级	中国地震局
+2016年	中国地震局防震减灾优秀人才百人计划（孙治国）	省部级	中国地震局
+2021年	应急管理部直属机关优秀共产党员（孙治国）	省部级	中共应急管理部机关委员会
+2021年	中国地震局直属机关优秀共产党员（孙治国）	省部级	中国地震局直属机关党委
+2023年	河北省创新创业教学名师（周洋）	省部级	河北省教育厅
+2021年	河北省优秀教师（周洋）	省部级	河北省传统文化教育学会`;
+
+/* 解析数据 */
+const list=[];
+raw.trim().split('\n').forEach(line=>{
+  const arr=line.split('\t');
+  if(arr.length<4)return;
+  const year=parseInt(arr[0]);
+  const title=arr[1];
+  const level=arr[2];
+  const org=arr[3];
+  list.push({year,title,level,org});
+});
+
+/* 分类 */
+const national=list.filter(o=>o.level==='国家级');
+const provincial=list.filter(o=>o.level==='省部级');
+
+/* 渲染函数 */
+function render(arr,desc){
+  const tmp=[...arr];
+  if(desc)tmp.sort((a,b)=>b.year-a.year);
+  else    tmp.sort((a,b)=>a.year-b.year);
+  const html=tmp.map(o=>`<li><span class="year">${o.year}</span>${o.title}${o.org}</li>`).join('');
+  document.getElementById('list').innerHTML=html;
+}
+
+  <!-- const html=tmp.map(o=>`<li><span class="year">${o.year}</span>${o.title}<span class="level">${o.level}</span><div class="org">${o.org}</div></li>`).join('');   -->
+
+/* 交互 */
+let cur='national',desc=true;
+function refresh(){
+  render(cur==='national'?national:provincial,desc);
+}
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    cur=btn.dataset.type;
+    refresh();
+  };
+});
+document.getElementById('asc').onclick=()=>{desc=false;refresh();};
+document.getElementById('desc').onclick=()=>{desc=true;refresh();};
+
+/* 初始 */
+refresh();
+</script>
+</body>
+</html>

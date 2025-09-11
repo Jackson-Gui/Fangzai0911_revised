@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获奖成果展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(90deg, #1a3a8f 0%, #2a56b6 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .category-tabs {
+            display: flex;
+            background: #f0f4ff;
+            padding: 0 20px;
+            border-bottom: 2px solid #d0d9ff;
+        }
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+        .tab.active {
+            color: #1a3a8f;
+            border-bottom: 3px solid #1a3a8f;
+            background: white;
+        }
+        .content {
+            padding: 30px;
+        }
+        .awards-list {
+            list-style: none;
+        }
+        .awards-list li {
+            margin-bottom: 20px;
+            border-left: 4px solid #4a72da;
+            padding-left: 15px;
+            transition: all 0.3s ease;
+        }
+        .awards-list li:hover {
+            border-left: 4px solid #ff6b6b;
+            transform: translateX(5px);
+        }
+        .awards-list a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 15px;
+            background: #f9faff;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .awards-list a:hover {
+            background: #e6eeff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .awards-list p {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .awards-list .detail {
+            display: block;
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+        .year {
+            font-weight: bold;
+            color: #1a3a8f;
+            margin-right: 10px;
+        }
+        .level {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+        .national {
+            background: #ffeaa7;
+            color: #d35400;
+        }
+        .provincial {
+            background: #d6eaf8;
+            color: #2874a6;
+        }
+        .department {
+            color: #7d7d7d;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            background: #f8f9ff;
+            border-top: 1px solid #eaeaea;
+        }
+        @media (max-width: 768px) {
+            .category-tabs {
+                flex-direction: column;
+            }
+            .tab {
+                padding: 12px;
+                text-align: center;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="category-tabs">
+            <div class="tab active" onclick="showCategory('national')">国家级奖项</div>
+            <div class="tab" onclick="showCategory('provincial')">省部级奖项</div>
+        </div>
+        
+        <div class="content">
+            <ul class="awards-list" id="national-awards">
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2024年</span> <span class="level national">国家级</span>研究生国家奖学金3项（郑文文、张学坦、？）</p>
+                        <span class="department">教育部</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2024年</span> <span class="level national">国家级</span>全国党建工作样板支部</p>
+                        <span class="department">教育部</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2020年</span> <span class="level national">国家级</span>全国地震系统先进集体</p>
+                        <span class="department">人力资源和社会保障部、中国地震局</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2019年</span> <span class="level national">国家级</span>国务院政府特殊津贴（郭迅）</p>
+                        <span class="department">国务院</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2018年</span> <span class="level national">国家级</span>全国高校黄大年式教师团队：土木工程教师团队</p>
+                        <span class="department">教育部</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2018年</span> <span class="level national">国家级</span>全国技术能手（左彦峰）</p>
+                        <span class="department">人力资源和社会保障部</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2017年</span> <span class="level national">国家级</span>国家创新人才培养示范基地</p>
+                        <span class="department">科技部</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2017年</span> <span class="level national">国家级</span>国家地震工程研究示范型国合基地</p>
+                        <span class="department">科技部</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2016年</span> <span class="level national">国家级</span>国家科技进步二等奖：大型复杂结构在线混合试验关键技术与应用</p>
+                        <span class="department">国务院</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <ul class="awards-list" id="provincial-awards" style="display: none;">
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2025年</span> <span class="level provincial">省部级</span>河北省工程防灾减灾国际联合研究中心</p>
+                        <span class="department">河北省科技厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2024年</span> <span class="level provincial">省部级</span>河北省防灾减灾研究生工作站</p>
+                        <span class="department">河北省教育厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2024年</span> <span class="level provincial">省部级</span>第四届河北省高校教师教学创新大赛三等奖</p>
+                        <span class="department">河北省教育厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2024年</span> <span class="level provincial">省部级</span>河北省优秀硕士学位论文2项（王严信、刘军香）</p>
+                        <span class="department">河北省教育厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2024年</span> <span class="level provincial">省部级</span>河北省高校"双带头人"教师党支部书记"强国行"专项行动团队</p>
+                        <span class="department">河北省教育厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2024年</span> <span class="level provincial">省部级</span>河北省科学技术合作奖（戴君武）</p>
+                        <span class="department">河北省人民政府</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2024年</span> <span class="level provincial">省部级</span>湖北省自然科学奖二等奖：灾害性随机动力作用的降维建模理论及方法</p>
+                        <span class="department">湖北省人民政府</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2023年</span> <span class="level provincial">省部级</span>中央和国家机关"四强"党支部</p>
+                        <span class="department">中央和国家机关工作委员会</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2023年</span> <span class="level provincial">省部级</span>2022年度河北省高等学校优秀基层教学组织：土木工程地震灾害防治实践教学课程组</p>
+                        <span class="department">河北省教育厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2023年</span> <span class="level provincial">省部级</span>2023年度河北省高等学校优秀基层教学组织：土木工程教研室</p>
+                        <span class="department">河北省教育厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2023年</span> <span class="level provincial">省部级</span>河北省工程结构多灾害韧性与应急处置技术创新中心</p>
+                        <span class="department">河北省科技厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2022年</span> <span class="level provincial">省部级</span>河北省研究生课程思政示范课程、教学团队：高等混凝土结构</p>
+                        <span class="department">河北省教育厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2022年</span> <span class="level provincial">省部级</span>中国发明协会发明创业奖成果奖一等奖：重要文物及建筑减隔震防护技术与装置应用</p>
+                        <span class="department">中国发明协会</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2022年</span> <span class="level provincial">省部级</span>河北省师德标兵（孙治国）</p>
+                        <span class="department">河北省教育厅</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <p><span class="year">2021年</span> <span class="level provincial">省部级</span>河北省课程思政教学研究示范中心：防灾减灾课程思政教学研究示范中心</p>
+                        <span class="department">河北省教育厅</span>
+                    </a>
+                </li>
+                <!-- 更多省部级奖项，此处省略部分以保持简洁 -->
+            </ul>
+        </div>
+        
+    </div>
+
+    <script>
+        function showCategory(category) {
+            const nationalTab = document.querySelector('.tab:nth-child(1)');
+            const provincialTab = document.querySelector('.tab:nth-child(2)');
+            const nationalAwards = document.getElementById('national-awards');
+            const provincialAwards = document.getElementById('provincial-awards');
+            
+            if (category === 'national') {
+                nationalTab.classList.add('active');
+                provincialTab.classList.remove('active');
+                nationalAwards.style.display = 'block';
+                provincialAwards.style.display = 'none';
+            } else {
+                nationalTab.classList.remove('active');
+                provincialTab.classList.add('active');
+                nationalAwards.style.display = 'none';
+                provincialAwards.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
