@@ -1,0 +1,111 @@
+.titlestyle1070700{ font-size: 9pt; color: #222222; text-decoration: none ;}
+
+  /* 整个容器尺寸 */
+    .swiper-container {
+        width: 100%;
+        height: 240px;}
+  /* 分页符区域样式 */
+  .c1070719myswiper-pagination
+  {
+       position: absolute;
+       -webkit-transition: 300ms;
+	  -moz-transition: 300ms;
+	  -o-transition: 300ms;
+	  transition: 300ms;
+	  -webkit-transform: translate3d(0, 0, 0);
+	  -ms-transform: translate3d(0, 0, 0);
+	  -o-transform: translate3d(0, 0, 0);
+	  transform: translate3d(0, 0, 0);
+	  bottom:10px;
+	  right: 15px; 
+	  z-index: 10;
+          margin:0 3px;}
+  /* 分页符 */
+.c1070719myswiper-pagination-bullet
+{
+  margin: 0 3px;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 100%;
+  background: #000;
+  opacity: 0.2;}
+
+  /* 当前分页符 */
+.c1070719myswiper-pagination-bullet-active {
+  opacity: 1;
+  background: #007aff;}
+#vsb_content_1074_u61,#vsb_content_1075_u61,#vsb_content,p
+{
+ width: 100%;
+    height: 100%;}
+  /* 整个容器尺寸 */
+    .swiper-container {
+        width: 100%;
+        height: 240px;}
+  /* 分页符区域样式 */
+  .c1070707myswiper-pagination
+  {
+       position: absolute;
+       -webkit-transition: 300ms;
+	  -moz-transition: 300ms;
+	  -o-transition: 300ms;
+	  transition: 300ms;
+	  -webkit-transform: translate3d(0, 0, 0);
+	  -ms-transform: translate3d(0, 0, 0);
+	  -o-transform: translate3d(0, 0, 0);
+	  transform: translate3d(0, 0, 0);
+	  bottom:10px;
+	  right: 15px; 
+	  z-index: 10;
+          margin:0 3px;}
+  /* 分页符 */
+.c1070707myswiper-pagination-bullet
+{
+  margin: 0 3px;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 100%;
+  background: #000;
+  opacity: 0.2;}
+
+  /* 当前分页符 */
+.c1070707myswiper-pagination-bullet-active {
+  opacity: 1;
+  background: #007aff;}
+  /* 整个容器尺寸 */
+    .swiper-container {
+        width: 100%;
+        height: 240px;}
+  /* 分页符区域样式 */
+  .c1070715myswiper-pagination
+  {
+       position: absolute;
+       -webkit-transition: 300ms;
+	  -moz-transition: 300ms;
+	  -o-transition: 300ms;
+	  transition: 300ms;
+	  -webkit-transform: translate3d(0, 0, 0);
+	  -ms-transform: translate3d(0, 0, 0);
+	  -o-transform: translate3d(0, 0, 0);
+	  transform: translate3d(0, 0, 0);
+	  bottom:10px;
+	  right: 15px; 
+	  z-index: 10;
+          margin:0 3px;}
+  /* 分页符 */
+.c1070715myswiper-pagination-bullet
+{
+  margin: 0 3px;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 100%;
+  background: #000;
+  opacity: 0.2;}
+
+  /* 当前分页符 */
+.c1070715myswiper-pagination-bullet-active {
+  opacity: 1;
+  background: #007aff;}

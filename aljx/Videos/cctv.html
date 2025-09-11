@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成果视频展示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .cg_introvideo_container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .column_title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(to right, #2c3e50, #4a6789);
+            color: white;
+        }
+        
+        .column_title h2 {
+            font-size: 24px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .column_title h2 i {
+            margin-right: 10px;
+            color: #ffdd40;
+        }
+        
+        .column_title a {
+            color: #ffdd40;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .column_title a:hover {
+            color: white;
+            transform: translateX(3px);
+        }
+        
+        .cg_introvideo {
+            padding: 25px;
+            background: #f8f9fa;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+        }
+        
+        .video-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .control-btn {
+            padding: 10px 20px;
+            background: #4a6789;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn i {
+            margin-right: 8px;
+        }
+        
+        .control-btn:hover {
+            background: #5a78a9;
+            transform: translateY(-2px);
+        }
+        
+        .video-info {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .video-info h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .video-info p {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .video-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 8px;
+        }
+        
+        .page-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e9ecef;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn.active {
+            background: #4a6789;
+            color: white;
+        }
+        
+        .page-btn:hover:not(.active) {
+            background: #dde1e6;
+        }
+        
+        @media (max-width: 768px) {
+            .column_title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .video-controls {
+                flex-wrap: wrap;
+            }
+            
+            .control-btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cg_introvideo_container fl">
+        <div class="column_title">
+            <h2><i class="fas fa-video"></i> 成果视频</h2>
+            <a href="#">查看更多成果 <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="cg_introvideo">
+            <div class="video-container">
+                <video id="videoPlayer" controls>
+                    <source src="Videos/CCTV10.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放
+                </video>
+            </div>
+            
+            <div class="video-controls">
+                <button class="control-btn" onclick="playVideo()">
+                    <i class="fas fa-play"></i> 播放
+                </button>
+                <button class="control-btn" onclick="pauseVideo()">
+                    <i class="fas fa-pause"></i> 暂停
+                </button>
+                <button class="control-btn" onclick="toggleMute()">
+                    <i class="fas fa-volume-mute"></i> 静音
+                </button>
+                <button class="control-btn" onclick="toggleFullScreen()">
+                    <i class="fas fa-expand"></i> 全屏
+                </button>
+            </div>
+            
+            <div class="video-info">
+                <h3>防灾科技学院教学成果展示</h3>
+                <p>本视频展示了防灾科技学院在研究生教育方面的创新成果，包括课程建设、教学方法改革、实践教学创新等内容。视频来源：CCTV10 科教频道专题报道。</p>
+            </div>
+            
+            <div class="video-pagination">
+                <span class="page-btn active">1</span>
+                <span class="page-btn">2</span>
+                <span class="page-btn">3</span>
+                <span class="page-btn">4</span>
+                <span class="page-btn">5</span>
+            </div>
+        </div>  
+    </div>
+
+    <script>
+        // 获取视频元素
+        const video = document.getElementById('videoPlayer');
+        
+        // 播放视频
+        function playVideo() {
+            video.play();
+        }
+        
+        // 暂停视频
+        function pauseVideo() {
+            video.pause();
+        }
+        
+        // 切换静音
+        function toggleMute() {
+            video.muted = !video.muted;
+            // 更新按钮文本
+            const muteBtn = document.querySelector('.control-btn:nth-child(3)');
+            if (video.muted) {
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> 取消静音';
+            } else {
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> 静音';
+            }
+        }
+        
+        // 切换全屏
+        function toggleFullScreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        }
+        
+        // 分页按钮点击事件
+        document.querySelectorAll('.page-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                // 移除所有active类
+                document.querySelectorAll('.page-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                // 添加active类到当前按钮
+                btn.classList.add('active');
+                
+                // 这里可以添加加载其他视频的逻辑
+                // 例如: loadVideo(index + 1);
+            });
+        });
+    </script>
+</body>
+</html>
