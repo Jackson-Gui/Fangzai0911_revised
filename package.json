@@ -1,0 +1,16 @@
+{
+  "name": "fangzai0911_revised",
+  "version": "1.0.0",
+  "description": "Static HTML website",
+  "main": "aljx/index.html",
+  "scripts": {
+    "build": "echo 'No build step needed for static site'",
+    "test": "echo 'No tests specified'"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
